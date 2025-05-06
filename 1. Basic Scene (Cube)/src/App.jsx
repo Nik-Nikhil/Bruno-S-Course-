@@ -1,19 +1,20 @@
-import './App.css'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import Cube1 from './components/Cube1'
+import Cube2 from './components/Cube2'
+import { Leva } from 'leva'
+import Title from './components/Title'
 
 function App() {
-
   return (
-    <Canvas>
-      <color attach="background" args={['black']} />
-      <ambientLight intensity={1} />     
-      <OrbitControls />      
-    <mesh>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="red" />
-    </mesh>
-    </Canvas>    
+    <>
+      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+        <ambientLight />
+        <Title />
+        <Cube1 />
+        <Cube2 />
+      </Canvas>
+      <Leva collapsed={false} />
+    </>
   )
 }
 

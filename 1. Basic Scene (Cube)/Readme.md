@@ -1,15 +1,12 @@
-# Basic Scene
+# React + Vite
 
-```
-Use vite.js
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-# Create app
-npm create vite my-app
-# Select react as framework
-# Install dependencies
-cd my-app
-npm install three @react-three/fiber @react-three/drei
-npm run dev
-```
+Currently, two official plugins are available:
 
-![image](https://private-user-images.githubusercontent.com/56159827/297669641-08d23b03-3f67-47df-9971-ad03d4116235.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU1NjU4ODMsIm5iZiI6MTcwNTU2NTU4MywicGF0aCI6Ii81NjE1OTgyNy8yOTc2Njk2NDEtMDhkMjNiMDMtM2Y2Ny00N2RmLTk5NzEtYWQwM2Q0MTE2MjM1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMTglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTE4VDA4MTMwM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTZmZDdmZjA5MmRlYzNhODJlODY4NGNjNGZjZjcyNDY1NzAxNmJlY2EwYWFiMTgxMTdhOTVjYzYzMjk4ZTYxZGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.RqVUylS43A_eYXt4KPxpHKYLWsI_LHWgmSTIrCnc4I0)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
