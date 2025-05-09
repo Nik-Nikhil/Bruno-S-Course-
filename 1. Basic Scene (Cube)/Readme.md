@@ -1,6 +1,25 @@
-# Basic Scene (Cubes) inspired from Bruno's Course
+# 🧊 Basic Scene (Cubes)
 
-``Created using R3F(React-three-fiber)``
+A simple 3D scene featuring two cubes — one solid and one wireframe — built using [React Three Fiber (R3F)].
+## 🧰 Tech Stack
 
-npm install -- Install the required packages
-npm run dev -- Run it locally
+- React
+- React Three Fiber
+- Three.js
+- Vite
+
+## 📦 Installation
+
+ - npm install
+ 
+## 🖥️ Run Locally
+
+ - npm run dev
+
+## 📸 Preview
+
+![Preview of the 3D Cubes Scene](./public/Output.png)
+
+## 🧠 Inspired By
+
+ [Bruno Simon's Three.js Journey](https://threejs-journey.com/) — an incredible resource for learning Three.js interactively!
