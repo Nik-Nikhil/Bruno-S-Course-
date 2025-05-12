@@ -1,9 +1,9 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Suspense, useMemo, useRef } from 'react';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
 import { useControls, Leva } from 'leva';
+import * as THREE from 'three';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 function FloatingCubes({ count = 500 }) {
   const meshRef = useRef();
@@ -18,13 +18,11 @@ function FloatingCubes({ count = 500 }) {
     '🟥 Opacity': { value: 0.8, min: 0, max: 1 },
     '🟥 Size Min': { value: 0.6, min: 0, max: 2 },
     '🟥 Size Max': { value: 1.0, min: 0, max: 2 },
-
     '🟧 Color': { value: '#cc0000' },
     '🟧 bInt': { value: 2.5, min: 0, max: 10 },
     '🟧 Opacity': { value: 0.6, min: 0, max: 1 },
     '🟧 Size Min': { value: 0.4, min: 0, max: 2 },
     '🟧 Size Max': { value: 0.7, min: 0, max: 2 },
-
     '🟨 Color': { value: '#660000' },
     '🟨 bInt': { value: 0.8, min: 0, max: 10 },
     '🟨 Opacity': { value: 0.4, min: 0, max: 1 },
@@ -157,17 +155,56 @@ function CameraLogger() {
   return null;
 }
 
+function RadialBackground() {
+  const shaderRef = useRef();
+
+  const uniforms = useMemo(() => ({
+    uColorStart: { value: new THREE.Color('#600000') },
+    uColorEnd: { value: new THREE.Color('#200000') },
+  }), []);
+
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      varying vec2 vUv;
+      uniform vec3 uColorStart;
+      uniform vec3 uColorEnd;
+      void main() {
+        float dist = distance(vUv, vec2(0.5));
+        vec3 color = mix(uColorStart, uColorEnd, dist * 1.5);
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `,
+    depthWrite: false,
+    side: THREE.BackSide,
+  }), []);
+
+  return (
+    <mesh scale={[100, 100, 1]} position={[0, 0, -50]}>
+      <planeGeometry args={[1, 1]} />
+      <primitive object={material} ref={shaderRef} attach="material" />
+    </mesh>
+  );
+}
+
 export default function App() {
   return (
     <>
       <Canvas
-        gl={{ antialias: true }}
-        style={{ width: '100vw', height: '100vh' }}
+        gl={{ antialias: true, alpha: true }}
+        style={{ width: '100vw', height: '100vh', background: 'transparent' }}
         camera={{ position: [-4.69, 2.28, 25.98], fov: 50 }}
       >
-        <color attach="background" args={['#1a0000']} />
+        <color attach="background" args={['#200000']} />
+        <RadialBackground />
         <fog attach="fog" args={['#ff3333', 50, 500]} />
-
         <ambientLight intensity={0.0005} />
         <directionalLight position={[5, 20, 5]} intensity={0.5} color="#ff3333" castShadow />
         <pointLight position={[0, 20, 0]} intensity={1.2} color="#ff3333" />
@@ -180,7 +217,7 @@ export default function App() {
         </Suspense>
 
         <EffectComposer>
-          <Bloom intensity={1.2} luminanceThreshold={0.2} luminanceSmoothing={0.6} radius={0.7} />
+          <Bloom mipmapBlur intensity={2.0} radius={0.9} luminanceThreshold={0.2} />
         </EffectComposer>
       </Canvas>
 
