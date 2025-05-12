@@ -14,7 +14,7 @@ function FloatingCubes({ count = 500 }) {
     '🟨 Color': dCol, '🟨 bInt': dInt, '🟨 Opacity': dOpa, '🟨 Size Min': dMin, '🟨 Size Max': dMax,
   } = useControls('Cube Settings', {
     '🟥 Color': { value: '#ff3333' },
-    '🟥 bInt': { value: 20, min: 0, max: 20 },
+    '🟥 bInt': { value: 20, min: 0, max: 22 },
     '🟥 Opacity': { value: 0.8, min: 0, max: 1 },
     '🟥 Size Min': { value: 0.6, min: 0, max: 2 },
     '🟥 Size Max': { value: 1.0, min: 0, max: 2 },
