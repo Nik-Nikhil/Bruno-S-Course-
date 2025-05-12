@@ -172,7 +172,7 @@ export default function App() {
         <directionalLight position={[5, 20, 5]} intensity={0.5} color="#ff3333" castShadow />
         <pointLight position={[0, 20, 0]} intensity={1.2} color="#ff3333" />
 
-        <OrbitControls />
+        {/* <OrbitControls /> */}
         <CameraLogger />
 
         <Suspense fallback={null}>
