@@ -5,7 +5,7 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { useControls, Leva } from 'leva';
 
-function FloatingCubes({ count = 400 }) {
+function FloatingCubes({ count = 500 }) {
   const meshRef = useRef();
 
   const {
@@ -14,7 +14,7 @@ function FloatingCubes({ count = 400 }) {
     '🟨 Color': dCol, '🟨 bInt': dInt, '🟨 Opacity': dOpa, '🟨 Size Min': dMin, '🟨 Size Max': dMax,
   } = useControls('Cube Settings', {
     '🟥 Color': { value: '#ff3333' },
-    '🟥 bInt': { value: 4, min: 0, max: 10 },
+    '🟥 bInt': { value: 20, min: 0, max: 20 },
     '🟥 Opacity': { value: 0.8, min: 0, max: 1 },
     '🟥 Size Min': { value: 0.6, min: 0, max: 2 },
     '🟥 Size Max': { value: 1.0, min: 0, max: 2 },
@@ -172,7 +172,7 @@ export default function App() {
         <directionalLight position={[5, 20, 5]} intensity={0.5} color="#ff3333" castShadow />
         <pointLight position={[0, 20, 0]} intensity={1.2} color="#ff3333" />
 
-        {/* <OrbitControls /> */}
+        <OrbitControls makeDefault enableZoom={false} />
         <CameraLogger />
 
         <Suspense fallback={null}>
